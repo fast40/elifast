@@ -1,0 +1,47 @@
+I've been trying to figure out how to properly structure a project that
+uses Docker compose. An issue I've run into is that the COPY statement in
+Dockerfile copies the contents of a directory, not the directory itself.
+This makes it difficult to copy only my desired files over and leave behind
+unnecessary files like Dockerfile and venv. To do this, I have to create many
+layers in the image by having many COPY statements to specify the target
+directory in the image. Or, I could just limit the junk inside of the folder
+to copy over and be ok with the Dockerfile being copied over. I think that
+I shouldn't have a venv anywhere except in containers anyway, so that's what
+I'll do.
+
+Ok actually I think I do need a venv in the root directory of the project so
+that my IDE can actually know about the modules I use. I won't need this venv
+for running anything though.
+
+I've been trying to do the best practice thing all the time. This is slowing
+my progress. What I need to do is just make something that works, get it out
+there and be done with it. Then improve. I think I am doing premature
+optimization.
+
+I just spend a really long time trying to get gunicorn's --reload functionality
+working. The app.py file is mounted in a volume, and for some reason when the
+gunicorn command is run from the CMD statement in the dockerfile, --reload
+does not work. When I manually run the gunicorn command either from inside the
+container or initially from the docker run command, it works. I found that
+running gunicorn using the "command" keyword in the docker-compose file gets
+the job done for some reason.
+
+I just realized that the last paragraph is pretty significant. WHY IS THIS?
+Does the volume act differently when the command is run from different places?
+Does the place that the command runs from affect its permissions or environment
+in any way? What is going on?
+
+I ran into the issue that gunicorn will reload based on changes in the app.py
+file just fine, but it will not update HTML files correctly. If I changed the
+files inside of the templates folder, some of the workers would recognize that,
+others wouldn't, and it would just be a mess. If I would reload the page many
+times quickly it would display various different stages of editing the html
+file. All of this would be fixed if I changed app.py and the workers reloaded.
+This leads me to believe that the gunicorn workers are caching the html files.
+To fix this, I passed an argument to gunicorn called --max-requests and gave it
+the value of 1. This way, each gunicorn worker will automatically restart after
+every request. This seems like a hack and terrible for production, but I won't
+use it in production and it seems fine for now. The gunicorn docs say that this
+is designed to defend against memory leaks, which seems like a good idea. So
+maybe in production I might add this in but with a value much higher than 1. To
+be clear though, I have not done this yet.

@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: ./services/web
+      target: base
+    ports:
+      - 8000:8000
+    volumes:
+      - ./services/web/:/app
+    command: gunicorn --bind 0.0.0.0:8000 --workers 3 --max-requests 1 --reload app:app
