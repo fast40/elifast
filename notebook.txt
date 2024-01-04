@@ -45,3 +45,17 @@ use it in production and it seems fine for now. The gunicorn docs say that this
 is designed to defend against memory leaks, which seems like a good idea. So
 maybe in production I might add this in but with a value much higher than 1. To
 be clear though, I have not done this yet.
+
+Jan 3 2024 4:15pm
+I might be done for the day, but the next step here is to get nginx working.
+After that, figure out how to get this thing hosted on AWS. Also, I think I'm
+going to start adding timestamps to these notebook entries.
+
+Jan 4 1:44pm
+I just learned from chatgpt that volumes override original folder contents in
+docker. So I've removed the multi stage stuff from the dockerfile, since I'll
+just always copy stuff over but in the case of development just override those
+files with volume. I'll test if this works now.
+
+Jan 4 1:49om
+Ok it works.
