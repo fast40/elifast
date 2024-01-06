@@ -57,5 +57,16 @@ docker. So I've removed the multi stage stuff from the dockerfile, since I'll
 just always copy stuff over but in the case of development just override those
 files with volume. I'll test if this works now.
 
-Jan 4 1:49om
+Jan 4 1:49pm
 Ok it works.
+
+Jan 4 2:43pm
+I've just added basic nginx functionality. I still need to do a bunch to get
+https set up with letsencrypt etc as well as stuff for max uploaded file size
+and maybe some other stuff that comes up too. I've decided that for now I'm
+going to figure out how github actions works so that I can start building the
+setup for deploying AWS.
+
+Jan 5 10:18
+I've been looking into AWS, and man is it hard to understand what to do. I
+think learning the CLI is a good move, but we'll see.
