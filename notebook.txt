@@ -70,3 +70,13 @@ setup for deploying AWS.
 Jan 5 10:18
 I've been looking into AWS, and man is it hard to understand what to do. I
 think learning the CLI is a good move, but we'll see.
+
+Jan 10 9:49pm
+I've been learning about AWS. I've done some CLI learning, and it's ok I guess.
+I've been introduced to the jq command, which is really good for formatting json
+output from the aws cli. Although there is also a --format option on a lot of
+the aws CLI commands, which seems like it might take the same format. Anyway, I
+also learned that each image should have its own repository. Each repository can
+store different versions of an image, but it should not contain different
+images. I've figured out how to push the images to the repository, so next I
+just need to figure out how to use them, most likely with aws ECS.
