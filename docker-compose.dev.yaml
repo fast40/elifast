@@ -15,3 +15,5 @@ services:
       target: dev
     ports:
       - 80:80
+    depends_on:
+      - web

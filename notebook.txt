@@ -80,3 +80,8 @@ also learned that each image should have its own repository. Each repository can
 store different versions of an image, but it should not contain different
 images. I've figured out how to push the images to the repository, so next I
 just need to figure out how to use them, most likely with aws ECS.
+
+Jan 12 1:14pm
+I have a lot of updates but for now I just want to say that nginx seems to need
+web to be running before it can start without error. This is not obvious but I
+think I just found a case where nginx tried to start first and it caused issues.
