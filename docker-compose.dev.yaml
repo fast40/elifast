@@ -10,6 +10,8 @@ services:
     command: gunicorn --bind 0.0.0.0:8000 --workers 3 --max-requests 1 --reload app:app
 
   nginx:
-    build: ./services/nginx
+    build:
+      context: ./services/nginx
+      target: dev
     ports:
       - 80:80
