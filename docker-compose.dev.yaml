@@ -8,10 +8,8 @@ services:
     volumes:
       - ./services/web/:/app
     command: gunicorn --bind 0.0.0.0:8000 --workers 3 --max-requests 1 --reload app:app
+
   nginx:
     build: ./services/nginx
     ports:
       - 80:80
-      - 443:443
-    depends_on:
-      - web
