@@ -12,4 +12,4 @@ COPY prod.conf /etc/nginx/conf.d
 
 FROM base as ssl-setup
 
-COPY ssl.conf /etc/nginx/conf.d
+COPY ssl-setup.conf /etc/nginx/conf.d
