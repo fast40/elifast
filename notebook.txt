@@ -85,3 +85,8 @@ Jan 12 1:14pm
 I have a lot of updates but for now I just want to say that nginx seems to need
 web to be running before it can start without error. This is not obvious but I
 think I just found a case where nginx tried to start first and it caused issues.
+
+Jan 16 11:12pm
+I was thinking about using multistage builds to combine the nginx and web
+images. I'm not sure if this is the right choice, because if I implement this
+the multiple starting command seems a bit unwieldy. I might try it out though.
